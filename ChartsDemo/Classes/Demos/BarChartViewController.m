@@ -111,7 +111,11 @@
     {
         float mult = (range + 1);
         float val = (float) (arc4random_uniform(mult));
-        [yVals addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
+        BarChartDataEntry *dataObj = [[BarChartDataEntry alloc] initWithValue:val xIndex:i];
+        if (i % 2 == 0) {
+            dataObj.rounded = YES;
+        }
+        [yVals addObject:dataObj];
     }
     
     BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithYVals:yVals label:@"DataSet"];

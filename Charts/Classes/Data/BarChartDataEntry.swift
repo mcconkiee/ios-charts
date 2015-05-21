@@ -17,7 +17,7 @@ public class BarChartDataEntry: ChartDataEntry
 {
     /// the values the stacked barchart holds
     public var values: [Float]!
-    
+    public var rounded: Bool = false
     /// Constructor for stacked bar entries.
     public init(values: [Float], xIndex: Int)
     {

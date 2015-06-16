@@ -131,6 +131,8 @@ internal class ChartUtils
         
         UIGraphicsPushContext(context);
         (text as NSString).drawAtPoint(point, withAttributes: attributes);
+        CGContextAddEllipseInRect(context, CGRectMake(0, 0, 20, 20))
+        CGContextSetFillColorWithColor(context, UIColor.greenColor().CGColor)
         UIGraphicsPopContext();
     }
     

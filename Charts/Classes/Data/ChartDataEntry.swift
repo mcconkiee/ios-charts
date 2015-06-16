@@ -22,6 +22,9 @@ public class ChartDataEntry: NSObject, Equatable
     /// the index on the x-axis
     public var xIndex = Int(0)
     
+    //custom tint, where supported...
+    public var tint: UIColor?
+    
     /// optional spot for additional data this Entry represents
     public var data: AnyObject?
     

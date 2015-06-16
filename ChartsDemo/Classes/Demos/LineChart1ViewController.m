@@ -90,10 +90,15 @@
     leftAxis.drawLimitLinesBehindDataEnabled = YES;
     
     _chartView.rightAxis.enabled = NO;
-    
-    BalloonMarker *marker = [[BalloonMarker alloc] initWithColor:[UIColor colorWithWhite:180/255. alpha:1.0] font:[UIFont systemFontOfSize:12.0] insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)];
-    marker.minimumSize = CGSizeMake(80.f, 40.f);
+
+    UIColor *fill = [UIColor redColor];
+    UIColor *ring = [UIColor greenColor];
+    CircleMarker *marker = [[CircleMarker alloc] initWithFillColor:fill ringColor:ring insets:UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)];
+    marker.minimumSize = CGSizeMake(20.f,20.f);
     _chartView.marker = marker;
+//    BalloonMarker *marker = [[BalloonMarker alloc] initWithColor:[UIColor colorWithWhite:180/255. alpha:1.0] font:[UIFont systemFontOfSize:12.0] insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)];
+//    marker.minimumSize = CGSizeMake(80.f, 40.f);
+//    _chartView.marker = marker;
     
     _chartView.legend.form = ChartLegendFormLine;
     
@@ -116,7 +121,7 @@
     
     for (int i = 0; i < count; i++)
     {
-        [xVals addObject:[@(i) stringValue]];
+        [xVals addObject:[NSString stringWithFormat:@"test_%@",[@(i) stringValue]]];
     }
     
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
@@ -125,20 +130,23 @@
     {
         float mult = (range + 1);
         float val = (float) (arc4random_uniform(mult)) + 3;
-        [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+        if (i == 0) {
+            [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+        }else{
+            [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+        }
     }
     
     LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"DataSet 1"];
     
     set1.lineDashLengths = @[@5.f, @2.5f];
-    [set1 setColor:UIColor.blackColor];
-    [set1 setCircleColor:UIColor.blackColor];
+    [set1 setColor:UIColor.blueColor];
+    [set1 setCircleColor:UIColor.blueColor];
     set1.lineWidth = 1.f;
-    set1.circleRadius = 3.f;
-    set1.drawCircleHoleEnabled = NO;
+    set1.circleRadius = 5.f;
+    set1.drawCircleHoleEnabled = YES;
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.f;
-    set1.fillColor = UIColor.blackColor;
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];

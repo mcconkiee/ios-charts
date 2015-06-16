@@ -148,7 +148,11 @@ public class BarChartRenderer: ChartDataRendererBase
                 
 
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
-                CGContextSetFillColorWithColor(context, dataSet.colorAt(j).CGColor);
+                if let tint = e.tint as UIColor?{
+                    CGContextSetFillColorWithColor(context, tint.CGColor);
+                }else{
+                    CGContextSetFillColorWithColor(context, dataSet.colorAt(j).CGColor);
+                }
                 if e.rounded{
                     var rounded = UIBezierPath(roundedRect: barRect, cornerRadius: barRect.size.width/2)
                     rounded.fill()

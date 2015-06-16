@@ -106,7 +106,12 @@
     }
     
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
-    
+    NSArray *colors = @[
+                        [UIColor redColor],
+                        [UIColor blueColor],
+                        [UIColor orangeColor],
+                        [UIColor greenColor]
+                        ];
     for (int i = 0; i < count; i++)
     {
         float mult = (range + 1);
@@ -115,6 +120,9 @@
         if (i % 2 == 0) {
             dataObj.rounded = YES;
         }
+        int mod  = i % colors.count;
+        UIColor *clr = [colors objectAtIndex:mod];
+        dataObj.tint = clr;
         [yVals addObject:dataObj];
     }
     
